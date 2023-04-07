@@ -4,7 +4,7 @@
  * @author Jonathan E
  * @date 07-04-2023
  * 
- * This is a array list data type that can be used to store data in a list.
+ * This is an array list data type that can be used to store data in a list.
  * This implementation is a singly linked list that makes use of a dynamic 
  * array as the underlying collection.
 */
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct array_list {
     void** collection;

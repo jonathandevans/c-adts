@@ -233,6 +233,7 @@ int linked_list_indexOf(linked_list* list, void* data) {
 void linked_list_print(linked_list* list) {
   // If the list is NULL, return.
   if (list == NULL) {
+    printf("NULL\n");
     return;
   }
 
@@ -280,7 +281,7 @@ bool linked_list_clear(linked_list* list) {
 bool linked_list_free(linked_list* list) {
   // If the list is NULL, return false.
   if (list == NULL) {
-    return false;
+    return true;
   }
 
   // Remove all nodes.
