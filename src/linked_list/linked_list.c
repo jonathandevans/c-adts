@@ -233,6 +233,7 @@ int linked_list_indexOf(linked_list* list, void* data) {
 void linked_list_print(linked_list* list) {
   // If the list is NULL, return.
   if (list == NULL) {
+    printf("NULL\n");
     return;
   }
 
@@ -275,12 +276,12 @@ bool linked_list_clear(linked_list* list) {
  * memory. Only the pointer to the data is freed, not the data itself.
  * 
  * @param list the pointer to the linked list.
- * @return true if the memory was deallocated successfully, false otherwise.
+ * @return true if the list was deallocated successfully, false otherwise.
 */
 bool linked_list_free(linked_list* list) {
   // If the list is NULL, return false.
   if (list == NULL) {
-    return false;
+    return true;
   }
 
   // Remove all nodes.
