@@ -44,13 +44,13 @@ LinkedList* new_LinkedList();
 bool LinkedList_add(LinkedList* list, void* data);
 
 /**
- * Removes a node from the linked list.
+ * Removes a given index from the linked list.
  * 
- * @param list the pointer to the linked list.
- * @param data the data to be removed from the linked list.
+ * @param list  the pointer to the linked list.
+ * @param index the index of the node to be removed.
  * @return true if the node was removed successfully, false otherwise.
 */
-bool LinkedList_remove(LinkedList* list, void* data);
+bool LinkedList_remove(LinkedList* list, int index);
 
 /**
  * Gets the data from the node at the specified index.
