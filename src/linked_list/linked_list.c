@@ -275,7 +275,7 @@ bool linked_list_clear(linked_list* list) {
  * memory. Only the pointer to the data is freed, not the data itself.
  * 
  * @param list the pointer to the linked list.
- * @return true if the memory was deallocated successfully, false otherwise.
+ * @return true if the list was deallocated successfully, false otherwise.
 */
 bool linked_list_free(linked_list* list) {
   // If the list is NULL, return false.

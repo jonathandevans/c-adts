@@ -83,6 +83,7 @@ bool linked_list_isEmpty(linked_list* list);
  * 
  * @param list the pointer to the linked list.
  * @param data the data to be checked.
+ * @return true if the linked list contains the specified data, false otherwise.
 */
 bool linked_list_contains(linked_list* list, void* data);
 
@@ -96,7 +97,7 @@ bool linked_list_contains(linked_list* list, void* data);
 int linked_list_indexOf(linked_list* list, void* data);
 
 /**
- * Prints the linked list.
+ * Prints the linked list as a list of integers.
  * 
  * @param list the pointer to the linked list.
 */
@@ -114,7 +115,8 @@ bool linked_list_clear(linked_list* list);
  * Frees the memory allocated to the linked list.
  * 
  * @param list the pointer to the linked list.
+ * @return true if the memory was freed successfully, false otherwise.
 */
-void linked_list_free(linked_list* list);
+bool linked_list_free(linked_list* list);
 
 #endif /* LINKEDLIST_H */
