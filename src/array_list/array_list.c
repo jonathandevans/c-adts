@@ -20,7 +20,7 @@
  * @return the pointer to the array list, or NULL if the memory allocation
  * failed.
 */
-array_list* array_list_new() {
+array_list* new_array_list() {
   array_list* list = malloc(sizeof(array_list));
   // If the memory allocation failed, return NULL.
   if (list == NULL) {

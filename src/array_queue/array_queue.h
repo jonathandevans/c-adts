@@ -75,9 +75,8 @@ bool array_queue_isEmpty(array_queue* queue);
  * Prints the queue as a list of integers.
  * 
  * @param queue  The queue to print.
- * @param print  The function to use to print the elements.
 */
-void array_queue_print(array_queue* queue, void (*print)(void*));
+void array_queue_print(array_queue* queue);
 
 /**
  * Clears the queue.

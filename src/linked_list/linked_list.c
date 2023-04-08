@@ -20,7 +20,7 @@
  * @return the pointer to the linked list, or NULL if the memory allocation
  * failed.
 */
-linked_list* linked_list_new() {
+linked_list* new_linked_list() {
   linked_list* list = malloc(sizeof(linked_list));
   // If the memory allocation failed, return NULL.
   if (list == NULL) {
