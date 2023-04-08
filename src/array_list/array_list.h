@@ -18,8 +18,8 @@
 #include <string.h>
 
 typedef struct array_list {
-    void** collection;
-    int size;
+  void** collection;
+  int size;
 } array_list;
 
 /**

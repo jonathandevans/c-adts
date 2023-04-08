@@ -18,14 +18,14 @@
 #include <stdbool.h>
 
 typedef struct node {
-    void* data;
-    struct node* next;
+  void* data;
+  struct node* next;
 } node;
 
 typedef struct linked_list {
-    node* head;
-    node* tail;
-    int size;
+  node* head;
+  node* tail;
+  int size;
 } linked_list;
 
 /**
