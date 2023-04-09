@@ -1,6 +1,6 @@
 /**
  * @file array_stack.h
- * @brief Array stack data type
+ * @brief Stack data type implementation using a dynamic array
  * @author Jonathan E
  * @date 09-04-2023
  * 
@@ -8,6 +8,8 @@
  * structure.
  * This implementation is a stack that makes use of a dynamic array as 
  * the underlying collection.
+ * The data stored in the stack are void pointers which are dynamically allocated
+ * to the heap.
 */
 
 #ifndef ARRAY_STACK_H
@@ -32,7 +34,7 @@ ArrayStack* new_ArrayStack();
 
 /**
  * Pushes an element onto the stack.
- * The data is stored in the node as a void pointer. Note that the data is not
+ * The data is stored in the array as a void pointer. Note that the data is not
  * copied, but rather the pointer to the data is stored in the node
  * 
  * @param ArrayStack* The stack to push the element onto.
@@ -43,7 +45,7 @@ bool ArrayStack_push(ArrayStack* stack, void* data);
 
 /**
  * Pops an element off the stack.
- * The data is stored in the node as a void pointer. This function returns the
+ * The data is stored in the array as a void pointer. This function returns the
  * pointer to the data, not a copy of the data.
  * 
  * @param ArrayStack* The stack to pop the element off of.
@@ -53,7 +55,7 @@ void* ArrayStack_pop(ArrayStack* stack);
 
 /**
  * Peeks at the top element of the stack.
- * The data is stored in the node as a void pointer. This function returns the
+ * The data is stored in the array as a void pointer. This function returns the
  * pointer to the data, not a copy of the data.
  * 
  * @param ArrayStack* The stack to peek at.
@@ -92,7 +94,7 @@ void ArrayStack_print(ArrayStack* stack);
 void ArrayStack_printInt(ArrayStack* stack);
 
 /**
- * Clears the stack.
+ * Clears the given stack.
  * 
  * @param ArrayStack* The stack to clear.
  * @return true if the stack was cleared, false otherwise.
