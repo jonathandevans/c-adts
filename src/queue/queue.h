@@ -2,7 +2,7 @@
  * @file queue.h
  * @brief Queue data type
  * @author Jonathan E
- * @date 07-04-2023
+ * @date 09-04-2023
  * 
  * This is an queue data type that can be used to store data in a FIFO data
  * structure.

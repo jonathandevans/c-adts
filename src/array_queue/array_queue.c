@@ -2,7 +2,7 @@
  * @file array_queue.c
  * @brief Array queue data type implementation
  * @author Jonathan E
- * @date 07-04-2023
+ * @date 08-04-2023
  * 
  * This is an implementation of an array queue data type that can be used to store
  * generic data.
