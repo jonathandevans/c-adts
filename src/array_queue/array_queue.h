@@ -4,7 +4,7 @@
  * @author Jonathan E
  * @date 07-04-2023
  * 
- * This is an queue data type that can be used to store data in a FIFO data
+ * This is a queue data type that can be used to store data in a FIFO data
  * structure.
  * This implementation is a queue that makes use of a dynamic array as 
  * the underlying collection.
