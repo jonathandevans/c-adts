@@ -139,7 +139,7 @@ bool ArrayList_remove(ArrayList* list, int index) {
  * @param int        The index of the element to get.
  * @return The element at the given index, or NULL if the index is out of bounds.
 */
-bool ArrayList_get(ArrayList* list, int index) {
+void* ArrayList_get(ArrayList* list, int index) {
   // If the list is NULL, return false.
   if (list == NULL) {
     return false;

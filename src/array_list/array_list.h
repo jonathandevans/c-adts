@@ -62,7 +62,7 @@ bool ArrayList_remove(ArrayList*, int);
  * @param int        The index of the element to get.
  * @return The element at the given index, or NULL if the index is out of bounds.
 */
-bool ArrayList_get(ArrayList*, int);
+void* ArrayList_get(ArrayList*, int);
 
 /**
  * Gets the size of the given array list.
