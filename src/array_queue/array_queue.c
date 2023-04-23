@@ -27,16 +27,9 @@ ArrayQueue* new_ArrayQueue() {
   if (queue == NULL) {
     return NULL;
   }
-
-  // Initialise the collection.
-  void** new_collection = malloc(sizeof(void*));
-  // If the memory allocation failed, return NULL.
-  if (new_collection == NULL) {
-    return NULL;
-  }
-
+  
   // Initialise the queue.
-  queue->collection = new_collection;
+  queue->collection = NULL;
   queue->size = 0;
   return queue;
 }
@@ -56,16 +49,15 @@ bool ArrayQueue_enqueue(ArrayQueue* queue, void* data) {
     return false;
   }
 
-  // If the collection is NULL, return false.
-  if (queue->collection == NULL) {
-    return false;
-  }
-
   // If the size is 0, then the collection is empty.
   if (queue->size == 0) {
-    // Add the data to the collection.
-    queue->collection[0] = data;
-    // Increment the size.
+    void** new_collection = malloc(sizeof(void*));
+    // If the memory allocation failed, return false.
+    if (new_collection == NULL) {
+      return false;
+    }
+    new_collection[0] = data;
+    queue->collection = new_collection;
     queue->size++;
     return true;
   }
@@ -82,13 +74,9 @@ bool ArrayQueue_enqueue(ArrayQueue* queue, void* data) {
     new_collection[queue->size] = data;
     // Increment the size.
     queue->size++;
+    queue->collection = new_collection;
 
     return true;
-  }
-
-  // If the size is less than 0, then the size is invalid.
-  if (queue->size < 0) {
-    return false;
   }
 
   // If the code reaches this point, then the code is invalid.
@@ -119,6 +107,14 @@ void* ArrayQueue_dequeue(ArrayQueue* queue) {
     return NULL;
   }
 
+  if (queue->size == 1) {
+    void* data = queue->collection[0];
+    free(queue->collection);
+    queue->collection = NULL;
+    queue->size--;
+    return data;
+  }
+
   // If the size is greater than 0, then the collection is not empty.
   if (queue->size > 0) {
     void* data = queue->collection[0];
@@ -130,10 +126,10 @@ void* ArrayQueue_dequeue(ArrayQueue* queue) {
     }
 
     // Copy the data from the old collection to the new collection.
-    memcmp(new_collection, queue->collection + 1, sizeof(void*) * (queue->size - 1));
+    memcpy(new_collection, &queue->collection[1], sizeof(void*) * (queue->size - 1));
 
-    // Free the old collection.
     free(queue->collection);
+
     // Set the collection to the new collection.
     queue->collection = new_collection;
     // Decrement the size.
@@ -306,7 +302,7 @@ void ArrayQueue_printInt(ArrayQueue* queue) {
   if (queue->size > 0) {
     printf("[");
     for (int i = 0; i < queue->size; i++) {
-      printf("%d ", (int)queue->collection[i]);
+      printf("%d ", *(int*)queue->collection[i]);
       if (i < queue->size - 1) {
         printf(", ");
       }
@@ -375,13 +371,13 @@ bool ArrayQueue_clear(ArrayQueue* queue) {
 void ArrayQueue_free(ArrayQueue* queue) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
-    return true;
+    return;
   }
 
-  // If the collection is NULL, return false.
-  if (queue->collection == NULL) {
+  // If the collection is empty, free the queue and return.
+  if (queue->size == 0) {
     free(queue);
-    return true;
+    return;
   }
 
 
@@ -391,5 +387,4 @@ void ArrayQueue_free(ArrayQueue* queue) {
   queue->collection = NULL;
   // Free the queue.
   free(queue);
-  return true;
 }

@@ -6,7 +6,7 @@
  * 
  * This file contains the test functions for array_list.c.
  * By running this file, you can test the functions in array_list.c with
- * the test conditions outputted to the console.
+ * the test cases outputted to the console.
 */
 
 #include <stdio.h>
@@ -24,17 +24,14 @@ bool test_new_ArrayList() {
   ArrayList* list = new_ArrayList();
 
   if (list == NULL) {
-    printf("d");
     return false;
   }
 
   if (list->size != 0) {
-    printf("a");
     return false;
   }
 
   if (list->collection == NULL) {
-    printf("b");
     return false;
   }
 
@@ -843,48 +840,48 @@ bool test_ArrayList_clear_from_empty() {
 int main() {
   printf("Running unit tests for ArrayList.h...\n");
 
-  printf("\ttesting new_ArrayList()...%s\n", test_new_ArrayList() ? "PASS" : "FAIL");
+  printf("\ttesting new_ArrayList()...............................%s\n", test_new_ArrayList() ? "PASS" : "FAIL");
   
-  printf("\ttesting ArrayList_add()...%s\n", test_ArrayList_add() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_add() with multiple elements...%s\n", test_ArrayList_add_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_add() to NULL...%s\n", test_ArrayList_add_to_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_add()...............................%s\n", test_ArrayList_add() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_add() with multiple elements........%s\n", test_ArrayList_add_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_add() to NULL.......................%s\n", test_ArrayList_add_to_null() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_remove()...%s\n", test_ArrayList_remove() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_remove() with multiple elements...%s\n", test_ArrayList_remove_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_remove() from NULL...%s\n", test_ArrayList_remove_from_null() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_remove() using index too large...%s\n", test_ArrayList_remove_index_too_large() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_remove() using index too small...%s\n", test_ArrayList_remove_index_too_small() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_remove() from empty...%s\n", test_ArrayList_remove_from_empty() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_remove()............................%s\n", test_ArrayList_remove() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_remove() with multiple elements.....%s\n", test_ArrayList_remove_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_remove() from NULL..................%s\n", test_ArrayList_remove_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_remove() using index too large......%s\n", test_ArrayList_remove_index_too_large() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_remove() using index too small......%s\n", test_ArrayList_remove_index_too_small() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_remove() from empty.................%s\n", test_ArrayList_remove_from_empty() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_get()...%s\n", test_ArrayList_get() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_get() with multiple elements...%s\n", test_ArrayList_get_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_get() from NULL...%s\n", test_ArrayList_get_from_null() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_get() using index too large...%s\n", test_ArrayList_get_index_too_large() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_get() using index too small...%s\n", test_ArrayList_get_index_too_small() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_get() from empty...%s\n", test_ArrayList_get_from_empty() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_get()...............................%s\n", test_ArrayList_get() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_get() with multiple elements........%s\n", test_ArrayList_get_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_get() from NULL.....................%s\n", test_ArrayList_get_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_get() using index too large.........%s\n", test_ArrayList_get_index_too_large() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_get() using index too small.........%s\n", test_ArrayList_get_index_too_small() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_get() from empty....................%s\n", test_ArrayList_get_from_empty() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_size()...%s\n", test_ArrayList_size() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_size() with multiple elements...%s\n", test_ArrayList_size_with_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_size() from NULL...%s\n", test_ArrayList_size_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_size()..............................%s\n", test_ArrayList_size() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_size() with multiple elements.......%s\n", test_ArrayList_size_with_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_size() from NULL....................%s\n", test_ArrayList_size_from_null() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_isEmpty()...%s\n", test_ArrayList_isEmpty() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_isEmpty() with multiple elements...%s\n", test_ArrayList_isEmpty_with_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_isEmpty() from NULL...%s\n", test_ArrayList_isEmpty_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_isEmpty()...........................%s\n", test_ArrayList_isEmpty() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_isEmpty() with multiple elements....%s\n", test_ArrayList_isEmpty_with_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_isEmpty() from NULL.................%s\n", test_ArrayList_isEmpty_from_null() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_contains()...%s\n", test_ArrayList_contains() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_contains()..........................%s\n", test_ArrayList_contains() ? "PASS" : "FAIL");
   printf("\ttesting ArrayList_contains() with multiple elements...%s\n", test_ArrayList_contains_with_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_contains() from NULL...%s\n", test_ArrayList_contains_from_null() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_contains() from empty...%s\n", test_ArrayList_contains_from_empty() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_contains() from NULL................%s\n", test_ArrayList_contains_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_contains() from empty...............%s\n", test_ArrayList_contains_from_empty() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_indexOf()...%s\n", test_ArrayList_indexOf() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_indexOf() with multiple elements...%s\n", test_ArrayList_indexOf_with_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_indexOf() from NULL...%s\n", test_ArrayList_indexOf_from_null() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_indexOf() from empty...%s\n", test_ArrayList_indexOf_from_empty() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_indexOf()...........................%s\n", test_ArrayList_indexOf() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_indexOf() with multiple elements....%s\n", test_ArrayList_indexOf_with_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_indexOf() from NULL.................%s\n", test_ArrayList_indexOf_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_indexOf() from empty................%s\n", test_ArrayList_indexOf_from_empty() ? "PASS" : "FAIL");
 
-  printf("\ttesting ArrayList_clear()...%s\n", test_ArrayList_clear() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_clear() with multiple elements...%s\n", test_ArrayList_clear_with_multiple() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_clear() from NULL...%s\n", test_ArrayList_clear_from_null() ? "PASS" : "FAIL");
-  printf("\ttesting ArrayList_clear() from empty...%s\n", test_ArrayList_clear_from_empty() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_clear().............................%s\n", test_ArrayList_clear() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_clear() with multiple elements......%s\n", test_ArrayList_clear_with_multiple() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_clear() from NULL...................%s\n", test_ArrayList_clear_from_null() ? "PASS" : "FAIL");
+  printf("\ttesting ArrayList_clear() from empty..................%s\n", test_ArrayList_clear_from_empty() ? "PASS" : "FAIL");
 
   printf("Unit tests complete.\n");
 }
