@@ -1,6 +1,6 @@
 /**
  * @file stack.h
- * @brief Stack data type implementation using node structure
+ * @brief Stack data type implementation using a node structure
  * @author Jonathan E
  * @date 23-04-2023
  * 
