@@ -36,7 +36,7 @@
 *.x86_64
 *.hex
 
-# Custom executables
+# Custom Executables
 ArrayListTest
 ArrayQueueTest
 
