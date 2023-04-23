@@ -1,6 +1,6 @@
 /**
  * @file array_queue.h
- * @brief Array queue data type
+ * @brief Array queue data type implementation using a dynamic array
  * @author Jonathan E
  * @date 07-04-2023
  * 
@@ -8,6 +8,8 @@
  * structure.
  * This implementation is a queue that makes use of a dynamic array as 
  * the underlying collection.
+ * The data stored in the array is a void pointers which is dynamically allocated
+ * to the heap.
 */
 
 #ifndef ARRAY_QUEUE_H
@@ -18,80 +20,92 @@
 #include <stdbool.h>
 #include <string.h>
 
-typedef struct array_queue {
+typedef struct ArrayQueue {
   void** collection;
   int size;
-} array_queue;
+} ArrayQueue;
 
 /**
- * Creates a new array queue.
+ * Creates a new queue using a dynamic array as the underlying collection.
  * 
  * @return A pointer to the new array queue.
 */
-array_queue* new_array_queue();
+ArrayQueue* new_ArrayQueue();
 
 /**
  * Adds an element to the end of the queue.
+ * The data is stored in a dynamic array. Note that the data is not
+ * copied, but rather the pointer to the data is copied.
  * 
- * @param queue   The queue to add the element to.
- * @param element The element to add to the queue.
+ * @param ArrayQueue* The queue to add the element to.
+ * @param void*       The element to add to the queue.
  * @return true if the element was added successfully, false otherwise.
 */
-bool array_queue_enqueue(array_queue* queue, void* element);
+bool ArrayQueue_enqueue(ArrayQueue*, void*);
 
 /**
  * Removes the element at the front of the queue.
+ * The data is stored in a dynamic array. Note that the data is not
+ * copied, but rather the pointer to the data is copied.
  * 
- * @param queue The queue to remove the element from.
+ * @param Queue* The queue to remove the element from.
  * @return The element that was removed from the queue.
 */
-void* array_queue_dequeue(array_queue* queue);
+void* ArrayQueue_dequeue(ArrayQueue*);
 
 /**
- * Gets the element at the front of the queue, without removing it.
+ * Peeks at the element at the front of the queue.
+ * The data is stored in a dynamic array. This function returns the pointer
+ * to the data, not a copy of the data.
  * 
- * @param queue The queue to get the element from.
+ * @param ArrayQueue* The queue to get the element from.
  * @return The element at the front of the queue.
 */
-void* array_queue_peek(array_queue* queue);
+void* ArrayQueue_peek(ArrayQueue*);
 
 /**
  * Gets the size of the queue.
  * 
- * @param queue The queue to get the size of.
+ * @param ArrayQueue* The queue to get the size of.
  * @return The size of the queue.
 */
-int array_queue_size(array_queue* queue);
+int ArrayQueue_size(ArrayQueue*);
 
 /**
  * Checks if the queue is empty.
  * 
- * @param queue The queue to check.
+ * @param ArrayQueue* The queue to check.
  * @return true if the queue is empty, false otherwise.
 */
-bool array_queue_isEmpty(array_queue* queue);
+bool ArrayQueue_isEmpty(ArrayQueue*);
+
+/**
+ * Prints the queue as a list of pointers.
+ * 
+ * @param ArrayQueue* The queue to print.
+*/
+void ArrayQueue_print(ArrayQueue*);
 
 /**
  * Prints the queue as a list of integers.
  * 
- * @param queue  The queue to print.
+ * @param ArrayQueue* The queue to print.
 */
-void array_queue_print(array_queue* queue);
+void ArrayQueue_printInt(ArrayQueue*);
 
 /**
  * Clears the queue.
  * 
- * @param queue The queue to clear.
+ * @param ArrayQueue* The queue to clear.
  * @return true if the queue was cleared successfully, false otherwise.
 */
-bool array_queue_clear(array_queue* queue);
+bool ArrayQueue_clear(ArrayQueue*);
 
 /**
- * Frees the queue.
+ * Frees the memory allocated for the queue.
  * 
- * @param queue The queue to free.
- * @return true if the queue was freed successfully, false otherwise.
+ * @param ArrayQueue* The queue to free.
 */
-bool array_queue_free(array_queue* queue);
+void ArrayQueue_free(ArrayQueue*);
 
 #endif /* ARRAY_QUEUE_H */

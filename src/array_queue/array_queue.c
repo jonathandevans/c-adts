@@ -15,13 +15,14 @@
 #include "array_queue.h"
 
 /**
- * Creates a new array queue, using malloc to allocate memory for the queue.
+ * Creates a new queue using a dynamic array as the underlying collection.
+ * This function uses malloc to allocate memory for the queue.
  * 
  * @return the pointer to the array queue, or NULL if the memory allocation
- * failed.
+ *         failed.
 */
-array_queue* new_array_queue() {
-  array_queue* queue = malloc(sizeof(array_queue));
+ArrayQueue* new_ArrayQueue() {
+  ArrayQueue* queue = malloc(sizeof(ArrayQueue));
   // If the memory allocation failed, return NULL.
   if (queue == NULL) {
     return NULL;
@@ -41,16 +42,15 @@ array_queue* new_array_queue() {
 }
 
 /**
- * Adds a new node to the array queue, using malloc to allocate memory for the
- * node.
- * The data is stored in the node as a void pointer. Note that the data is not
- * copied, but rather the pointer to the data is stored in the node.
+ * Adds a new element to the queue.
+ * The data is stored in a dynamic array. Note that the data is not
+ * copied, but rather the pointer to the data is stored in the array.
  * 
- * @param queue the pointer to the array queue.
- * @param data the data to be stored in the node.
+ * @param Queue* the pointer to the array queue.
+ * @param void*  the data to be stored in the node.
  * @return true if the node was added successfully, false otherwise.
 */
-bool array_queue_enqueue(array_queue* queue, void* data) {
+bool ArrayQueue_enqueue(ArrayQueue* queue, void* data) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
     return false;
@@ -96,12 +96,14 @@ bool array_queue_enqueue(array_queue* queue, void* data) {
 }
 
 /**
- * Removes the first node from the array queue.
+ * Removes the element at the front of the queue and returns the data stored.
+ * The data is stored in a dynamic array. This function returns the pointer stored
+ * in the array, not a copy of the data.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue* the pointer to the array queue.
  * @return the data stored in the first node, or NULL if the queue is empty.
 */
-void* array_queue_dequeue(array_queue* queue) {
+void* ArrayQueue_dequeue(ArrayQueue* queue) {
   // If the queue is NULL, return NULL.
   if (queue == NULL) {
     return NULL;
@@ -149,12 +151,14 @@ void* array_queue_dequeue(array_queue* queue) {
 }
 
 /**
- * Returns the data stored in the first node of the array queue.
+ * Peeks at the front of the queue and returns the data stored.
+ * The data is stored in a dynamic array. This function returns the pointer stored
+ * in the array, not a copy of the data.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue* the pointer to the array queue.
  * @return the data stored in the first node, or NULL if the queue is empty.
 */
-void* array_queue_peek(array_queue* queue) {
+void* ArrayQueue_peek(ArrayQueue* queue) {
   // If the queue is NULL, return NULL.
   if (queue == NULL) {
     return NULL;
@@ -185,12 +189,12 @@ void* array_queue_peek(array_queue* queue) {
 }
 
 /**
- * Returns the size of the array queue.
+ * Returns the size of the queue.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue* the pointer to the array queue.
  * @return the size of the array queue, or -1 if the queue is NULL.
 */
-int array_queue_size(array_queue* queue) {
+int ArrayQueue_size(ArrayQueue* queue) {
   // If the queue is NULL, return -1.
   if (queue == NULL) {
     return -1;
@@ -202,10 +206,10 @@ int array_queue_size(array_queue* queue) {
 /**
  * Returns true if the array queue is empty, false otherwise.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue* the pointer to the array queue.
  * @return true if the array queue is empty, false otherwise.
 */
-bool array_queue_isEmpty(array_queue* queue) {
+bool ArrayQueue_isEmpty(ArrayQueue* queue) {
   // If the queue is NULL, return true.
   if (queue == NULL) {
     return true;
@@ -231,13 +235,14 @@ bool array_queue_isEmpty(array_queue* queue) {
 }
 
 /**
- * Prints the array queue as a list of integers.
+ * Prints the array queue as a list of pointers.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue* the pointer to the array queue.
 */
-void array_queue_print(array_queue* queue) {
+void ArrayQueue_print(ArrayQueue* queue) {
   // If the queue is NULL, return.
   if (queue == NULL) {
+    printf("[]\n");
     return;
   }
 
@@ -248,6 +253,7 @@ void array_queue_print(array_queue* queue) {
 
   // If the size is 0, then the collection is empty.
   if (queue->size == 0) {
+    printf("[]\n");
     return;
   }
 
@@ -255,7 +261,52 @@ void array_queue_print(array_queue* queue) {
   if (queue->size > 0) {
     printf("[");
     for (int i = 0; i < queue->size; i++) {
-      printf("%d", *(int*)queue->collection[i]);
+      printf("%p ", queue->collection[i]);
+      if (i < queue->size - 1) {
+        printf(", ");
+      }
+    }
+    printf("]\n");
+    return;
+  }
+
+  // If the size is less than 0, then the size is invalid.
+  if (queue->size < 0) {
+    return;
+  }
+
+  // If the code reaches this point, then the code is invalid.
+  return;
+}
+
+/**
+ * Prints the array queue as a list of integers.
+ * 
+ * @param ArrayQueue* the pointer to the array queue.
+*/
+void ArrayQueue_printInt(ArrayQueue* queue) {
+  // If the queue is NULL, return.
+  if (queue == NULL) {
+    printf("[]\n");
+    return;
+  }
+
+  // If the collection is NULL, return.
+  if (queue->collection == NULL) {
+    return;
+  }
+
+  // If the size is 0, then the collection is empty.
+  if (queue->size == 0) {
+    printf("[]\n");
+    return;
+  }
+
+  // If the size is greater than 0, then the collection is not empty.
+  if (queue->size > 0) {
+    printf("[");
+    for (int i = 0; i < queue->size; i++) {
+      printf("%d ", (int)queue->collection[i]);
       if (i < queue->size - 1) {
         printf(", ");
       }
@@ -276,10 +327,10 @@ void array_queue_print(array_queue* queue) {
 /**
  * Clears the array queue.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue* the pointer to the array queue.
  * @return true if the array queue was cleared, false otherwise.
 */
-bool array_queue_clear(array_queue* queue) {
+bool ArrayQueue_clear(ArrayQueue* queue) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
     return false;
@@ -316,12 +367,12 @@ bool array_queue_clear(array_queue* queue) {
 }
 
 /**
- * Frees the array queue.
+ * Frees the memory allocated to the queue.
  * 
- * @param queue the pointer to the array queue.
+ * @param ArrayQueue the pointer to the array queue.
  * @return true if the array queue was freed, false otherwise.
 */
-bool array_queue_free(array_queue* queue) {
+void ArrayQueue_free(ArrayQueue* queue) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
     return true;

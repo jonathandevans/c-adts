@@ -1,6 +1,6 @@
 /**
  * @file queue.c
- * @brief Queue data type implementation
+ * @brief Queue data type implementation using a node structure
  * @author Jonathan E
  * @date 09-04-2023
  * 
@@ -15,13 +15,13 @@
 #include "queue.h"
 
 /**
- * Creates a new queue, using malloc to allocate memory for the queue.
+ * Creates a new queue using a node structure as the underlying collection.
+ * This function uses malloc to allocate memory for the queue.
  * 
- * @return the pointer to the queue, or NULL if the memory allocation
- * failed.
+ * @return A pointer to the new queue, or NULL if the memory allocation failed.
 */
-queue* new_queue() {
-  queue* queue = malloc(sizeof(queue));
+Queue* new_Queue() {
+  Queue* queue = malloc(sizeof(Queue));
   // If the memory allocation failed, return NULL.
   if (queue == NULL) {
     return NULL;
@@ -35,23 +35,22 @@ queue* new_queue() {
 }
 
 /**
- * Adds a new node to the queue, using malloc to allocate memory for the
- * node.
+ * Adds a new element to the queue.
  * The data is stored in the node as a void pointer. Note that the data is not
  * copied, but rather the pointer to the data is stored in the node.
  * 
- * @param queue the pointer to the queue.
- * @param data the data to be stored in the node.
+ * @param Queue* the pointer to the queue.
+ * @param void*  the data to be stored in the node.
  * @return true if the node was added successfully, false otherwise.
 */
-bool queue_enqueue(queue* queue, void* data) {
+bool Queue_enqueue(Queue* queue, void* data) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
     return false;
   }
 
   // Create a new node.
-  queue_node* new_node = malloc(sizeof(queue_node));
+  Queue_Node* new_node = malloc(sizeof(Queue_Node));
   // If the memory allocation failed, return false.
   if (new_node == NULL) {
     return false;
@@ -78,13 +77,15 @@ bool queue_enqueue(queue* queue, void* data) {
 }
 
 /**
- * Removes the node at the head of the queue.
+ * Removes the node at the head of the queue, and returns the stored data.
+ * The data is stored in the node as a void pointer. This function returns the
+ * data stored in the node, not a copy of the data.
  * 
- * @param queue the pointer to the queue.
+ * @param Queue* the pointer to the queue.
  * @return the data stored in the node that was removed, or NULL if the queue
  * is empty.
 */
-void* queue_dequeue(queue* queue) {
+void* Queue_dequeue(Queue* queue) {
   // If the queue is NULL, return NULL.
   if (queue == NULL) {
     return NULL;
@@ -99,7 +100,7 @@ void* queue_dequeue(queue* queue) {
   void* data = queue->head->data;
 
   // Get the next node.
-  queue_node* next_node = queue->head->next;
+  Queue_Node* next_node = queue->head->next;
 
   // Free the head node.
   free(queue->head);
@@ -113,13 +114,15 @@ void* queue_dequeue(queue* queue) {
 }
 
 /**
- * Gets the data stored in the node at the head of the queue.
+ * Peeks at the front of the queue, and returns the stored data.
+ * The data is stored in the node as a void pointer. This function returns the
+ * data stored in the node, not a copy of the data.
  * 
- * @param queue the pointer to the queue.
+ * @param Queue* the pointer to the queue.
  * @return the data stored in the node at the head of the queue, or NULL if the
  * queue is empty.
 */
-void* queue_peek(queue* queue) {
+void* Queue_peek(Queue* queue) {
   // If the queue is NULL, return NULL.
   if (queue == NULL) {
     return NULL;
@@ -137,10 +140,10 @@ void* queue_peek(queue* queue) {
 /**
  * Gets the size of the queue.
  * 
- * @param queue the pointer to the queue.
+ * @param Queue* the pointer to the queue.
  * @return the size of the queue, or -1 if the queue is NULL.
 */
-int queue_size(queue* queue) {
+int Queue_size(Queue* queue) {
   // If the queue is NULL, return -1.
   if (queue == NULL) {
     return -1;
@@ -153,10 +156,10 @@ int queue_size(queue* queue) {
 /**
  * Checks if the queue is empty.
  * 
- * @param queue the pointer to the queue.
+ * @param Queue* the pointer to the queue.
  * @return true if the queue is empty, false otherwise.
 */
-bool queue_isEmpty(queue* queue) {
+bool Queue_isEmpty(Queue* queue) {
   // If the queue is NULL, return true.
   if (queue == NULL) {
     return true;
@@ -167,11 +170,11 @@ bool queue_isEmpty(queue* queue) {
 }
 
 /**
- * Prints the queue as a list of integers.
+ * Prints the queue as a list of pointers.
  * 
- * @param queue the pointer to the queue.
+ * @param Queue* the pointer to the queue.
 */
-void queue_print(queue* queue) {
+void Queue_print(Queue* queue) {
   // If the queue is NULL, return.
   if (queue == NULL) {
     return;
@@ -185,25 +188,52 @@ void queue_print(queue* queue) {
 
   printf("[ ");
   // Get the head of the queue.
-  queue_node* current_node = queue->head;
+  Queue_Node* current_node = queue->head;
   // While the next node is not NULL, print the data.
   while (current_node != NULL) {
-    printf("%i ", *(int*)current_node->data);
+    printf("%p ", current_node->data);
     current_node = current_node->next;
   }
-
   // Print a new line.
   printf("]\n");
 }
 
 /**
- * Clears the queue, freeing all the nodes in the queue
- * using free.
+ * Prints the queue as a list of integers.
  * 
- * @param queue the pointer to the queue.
+ * @param Queue* the pointer to the queue.
+*/
+void Queue_printInt(Queue* queue) {
+  // If the queue is NULL, return.
+  if (queue == NULL) {
+    return;
+  }
+
+  // If the queue is empty, return.
+  if (queue->size == 0) {
+    printf("[]\n");
+    return;
+  }
+
+  printf("[ ");
+  // Get the head of the queue.
+  Queue_Node* current_node = queue->head;
+  // While the next node is not NULL, print the data.
+  while (current_node != NULL) {
+    printf("%d ", *(int*)current_node->data);
+    current_node = current_node->next;
+  }
+  // Print a new line.
+  printf("]\n");
+}
+
+/**
+ * Clears the queue.
+ * 
+ * @param Queue* the pointer to the queue.
  * @return true if the queue was cleared successfully, false otherwise.
 */
-bool queue_clear(queue* queue) {
+bool Queue_clear(Queue* queue) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
     return false;
@@ -215,11 +245,11 @@ bool queue_clear(queue* queue) {
   }
 
   // Get the head of the queue.
-  queue_node* current_node = queue->head;
+  Queue_Node* current_node = queue->head;
   // While the next node is not NULL, free the current node and set the current
   // node to the next node.
   while (current_node != NULL) {
-    queue_node* next_node = current_node->next;
+    Queue_Node* next_node = current_node->next;
     free(current_node);
     current_node = next_node;
   }
@@ -236,17 +266,15 @@ bool queue_clear(queue* queue) {
 /**
  * Frees the memory allocated for the queue.
  * 
- * @param queue the pointer to the queue.
- * @return true if the queue was freed successfully, false otherwise.
+ * @param Queue* the pointer to the queue.
 */
-bool queue_free(queue* queue) {
+void Queue_free(Queue* queue) {
   // If the queue is NULL, return false.
   if (queue == NULL) {
-    return true;
+    return;
   }
 
   // Free the queue nodes and the queue.
-  queue_clear(queue);
+  Queue_clear(queue);
   free(queue);
-  return true;
 }

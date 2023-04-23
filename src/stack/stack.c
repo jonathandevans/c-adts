@@ -6,7 +6,7 @@
  * 
  * This is an implementation of a stack data type that can be used to store a
  * generic pointer.
- * This implementation is a stack data type that makes use of a node structure
+ * This implementation is a stack data type that makes use of a series of nodes
  * as the underlying collection.
  * The data stored in the nodes are void pointers which are dynamically allocated
  * to the heap.
@@ -18,7 +18,7 @@
  * Creates a new stack using a node structure as the underlying collection.
  * This function uses malloc to allocate memory for the stack.
  * 
- * @return The new stack.
+ * @return A pointer to the new stack, or NULL if the memory allocation failed.
 */
 Stack* new_Stack() {
   Stack* stack = malloc(sizeof(Stack));
@@ -182,7 +182,7 @@ void Stack_print(Stack* stack) {
   Stack_Node* current = stack->top;
   printf("[ ");
   while (current != NULL) {
-    printf("%p, ", current->data);
+    printf("%p ", current->data);
     current = current->next;
   }
   printf("]\n");
@@ -213,7 +213,7 @@ void Stack_printInt(Stack* stack) {
   Stack_Node* current = stack->top;
   printf("[ ");
   while (current != NULL) {
-    printf("%d, ", *(int*)current->data);
+    printf("%d ", *(int*)current->data);
     current = current->next;
   }
   printf("]\n");
@@ -254,7 +254,7 @@ bool Stack_clear(Stack* stack) {
 }
 
 /**
- * Frees the stack.
+ * Frees the memory allocated for the stack.
  * 
  * @param Stack* The stack to free.
 */
@@ -264,9 +264,7 @@ void Stack_free(Stack* stack) {
     return;
   }
 
-  // Clear the stack.
+  // Clear the stack and free the stack.
   Stack_clear(stack);
-
-  // Free the stack.
   free(stack);
 }

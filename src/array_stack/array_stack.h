@@ -21,14 +21,14 @@
 #include <string.h>
 
 typedef struct ArrayStack {
-    void** collection;
-    int size;
+  void** collection;
+  int size;
 } ArrayStack;
 
 /**
  * Creates a new stack using a dynamic array as the underlying collection.
  * 
- * @return The new array stack.
+ * @return A pointer to the new stack.
 */
 ArrayStack* new_ArrayStack();
 
@@ -38,10 +38,10 @@ ArrayStack* new_ArrayStack();
  * copied, but rather the pointer to the data is stored in the node
  * 
  * @param ArrayStack* The stack to push the element onto.
- * @param void*        The element to push onto the stack.
+ * @param void*       The element to push onto the stack.
  * @return true if the element was pushed onto the stack, false otherwise.
 */
-bool ArrayStack_push(ArrayStack* stack, void* data);
+bool ArrayStack_push(ArrayStack*, void*);
 
 /**
  * Pops an element off the stack.
@@ -51,7 +51,7 @@ bool ArrayStack_push(ArrayStack* stack, void* data);
  * @param ArrayStack* The stack to pop the element off of.
  * @return The element that was popped off the stack.
 */
-void* ArrayStack_pop(ArrayStack* stack);
+void* ArrayStack_pop(ArrayStack*);
 
 /**
  * Peeks at the top element of the stack.
@@ -61,7 +61,7 @@ void* ArrayStack_pop(ArrayStack* stack);
  * @param ArrayStack* The stack to peek at.
  * @return The element at the top of the stack.
 */
-void* ArrayStack_peek(ArrayStack* stack);
+void* ArrayStack_peek(ArrayStack*);
 
 /**
  * Gets the size of the stack.
@@ -69,7 +69,7 @@ void* ArrayStack_peek(ArrayStack* stack);
  * @param ArrayStack* The stack to get the size of.
  * @return The size of the stack.
 */
-int ArrayStack_size(ArrayStack* stack);
+int ArrayStack_size(ArrayStack*);
 
 /**
  * Checks if the stack is empty.
@@ -77,21 +77,21 @@ int ArrayStack_size(ArrayStack* stack);
  * @param ArrayStack* The stack to check.
  * @return true if the stack is empty, false otherwise.
 */
-bool ArrayStack_isEmpty(ArrayStack* stack);
+bool ArrayStack_isEmpty(ArrayStack*);
 
 /**
  * Prints the stack as a list of pointers.
  * 
  * @param ArrayStack* The stack to print.
 */
-void ArrayStack_print(ArrayStack* stack);
+void ArrayStack_print(ArrayStack*);
 
 /**
  * Prints the stack as a list of integers.
  * 
  * @param ArrayStack* The stack to print.
 */
-void ArrayStack_printInt(ArrayStack* stack);
+void ArrayStack_printInt(ArrayStack*);
 
 /**
  * Clears the given stack.
@@ -99,13 +99,13 @@ void ArrayStack_printInt(ArrayStack* stack);
  * @param ArrayStack* The stack to clear.
  * @return true if the stack was cleared, false otherwise.
 */
-bool ArrayStack_clear(ArrayStack* stack);
+bool ArrayStack_clear(ArrayStack*);
 
 /**
- * Frees the stack.
+ * Frees the memory allocated for the stack.
  * 
  * @param ArrayStack* The stack to free.
 */
-void ArrayStack_free(ArrayStack* stack);
+void ArrayStack_free(ArrayStack*);
 
 #endif /* ARRAY_STACK_H */

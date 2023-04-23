@@ -6,9 +6,9 @@
  * 
  * This is a stack data type that can be used to store data in a LIFO data
  * structure.
- * This implementation is a stack data type that makes use of a dynamic array
+ * This implementation is a stack data type that makes use of a series of nodes
  * as the underlying collection.
- * The data stored in the array are void pointers which are dynamically allocated
+ * The data stored in the nodes are void pointers which are dynamically allocated
  * to the heap.
 */
 
@@ -33,7 +33,7 @@ typedef struct Stack {
 /**
  * Creates a new stack using a series of nodes as the underlying collection.
  * 
- * @return The new stack.
+ * @return A pointer to the new stack.
 */
 Stack* new_Stack();
 
@@ -107,7 +107,7 @@ void Stack_printInt(Stack*);
 bool Stack_clear(Stack*);
 
 /**
- * Frees the given stack.
+ * Frees the memory allocated for the stack.
  * 
  * @param Stack* The stack to free.
 */

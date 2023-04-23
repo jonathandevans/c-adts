@@ -4,10 +4,10 @@
  * @author Jonathan E
  * @date 07-04-2023
  * 
- * This is a list data type that can be used to store data in a singly linked
- * list data structure.
- * This implementation is a list that makes use of a dynamic array as 
- * the underlying collection.
+ * This is a linked list data type that can be used to store data in a singly 
+ * linked list structure.
+ * This implementation is a singly linked list that makes use of a dynamic array
+ * as the underlying collection.
  * The data stored in the list are void pointers which are dynamically allocated
  * to the heap.
 */

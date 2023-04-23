@@ -18,7 +18,7 @@
  * Creates a new stack using a dynamic array as the underlying collection.
  * This function uses malloc to allocate memory for the stack.
  * 
- * @return The new array stack.
+ * @return A pointer to the new stack, or NULL if the memory allocation failed.
 */
 ArrayStack* new_ArrayStack() {
   ArrayStack* stack = malloc(sizeof(ArrayStack));
@@ -46,7 +46,7 @@ ArrayStack* new_ArrayStack() {
  * copied, but rather the pointer to the data is stored in the node.
  * 
  * @param ArrayStack* The stack to push the element onto.
- * @param void*        The element to push onto the stack.
+ * @param void*       The element to push onto the stack.
  * @return true if the element was pushed onto the stack, false otherwise.
 */
 bool ArrayStack_push(ArrayStack* stack, void* data) {
@@ -163,11 +163,6 @@ int ArrayStack_size(ArrayStack* stack) {
     return 0;
   }
 
-  // If the collection is NULL, return 0.
-  if (stack->collection == NULL) {
-    return 0;
-  }
-
   // Return the size of the stack.
   return stack->size;
 }
@@ -181,11 +176,6 @@ int ArrayStack_size(ArrayStack* stack) {
 bool ArrayStack_isEmpty(ArrayStack* stack) {
   // If the stack is NULL, return true.
   if (stack == NULL) {
-    return true;
-  }
-
-  // If the collection is NULL, return true.
-  if (stack->collection == NULL) {
     return true;
   }
 
@@ -266,7 +256,7 @@ bool ArrayStack_clear(ArrayStack* stack) {
 }
 
 /**
- * Frees the stack.
+ * Frees the memory allocated for the stack.
  * 
  * @param ArrayStack* The stack to free.
 */
