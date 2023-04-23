@@ -43,7 +43,7 @@ ArrayStack* new_ArrayStack() {
 /**
  * Pushes an element onto the stack.
  * The data is stored in the node as a void pointer. Note that the data is not
- * copied, but rather the pointer to the data is stored in the node
+ * copied, but rather the pointer to the data is stored in the node.
  * 
  * @param ArrayStack* The stack to push the element onto.
  * @param void*        The element to push onto the stack.
