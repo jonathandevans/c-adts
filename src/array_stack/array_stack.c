@@ -109,6 +109,9 @@ void* ArrayStack_pop(ArrayStack* stack) {
   // Get the data from the top of the stack.
   void* data = stack->collection[stack->size - 1];
 
+  // If the stack only has one element, free the collection.
+  
+
   // Reallocate the collection to make space for the new element.
   void** new_collection = realloc(stack->collection, sizeof(void*) * (stack->size - 1));
   // If the memory allocation failed, return NULL.
