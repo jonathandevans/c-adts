@@ -307,7 +307,7 @@ bool LinkedList_clear(LinkedList* list) {
 void LinkedList_free(LinkedList* list) {
   // If the list is NULL, return false.
   if (list == NULL) {
-    return true;
+    return;
   }
 
   // Remove all nodes.
@@ -319,5 +319,4 @@ void LinkedList_free(LinkedList* list) {
 
   // Deallocate the list.
   free(list);
-  return true;
 }
