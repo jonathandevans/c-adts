@@ -39,6 +39,10 @@
 # Custom Executables
 ArrayListTest
 ArrayQueueTest
+ArrayStackTest
+LinkedListTest
+QueueTest
+StackTest
 
 # Debug files
 *.dSYM/
