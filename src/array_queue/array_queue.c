@@ -107,8 +107,10 @@ void* ArrayQueue_dequeue(ArrayQueue* queue) {
     return NULL;
   }
 
+  void* data = queue->collection[0];
+
   if (queue->size == 1) {
-    void* data = queue->collection[0];
+    
     free(queue->collection);
     queue->collection = NULL;
     queue->size--;
@@ -117,8 +119,6 @@ void* ArrayQueue_dequeue(ArrayQueue* queue) {
 
   // If the size is greater than 0, then the collection is not empty.
   if (queue->size > 0) {
-    void* data = queue->collection[0];
-
     void** new_collection = malloc(sizeof(void*) * (queue->size - 1));
     // If the memory allocation failed, return NULL.
     if (new_collection == NULL) {
