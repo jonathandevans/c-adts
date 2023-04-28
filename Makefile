@@ -5,7 +5,7 @@ GFLAGS = -Wall -Wextra
 CFLAGS = $(DFLAG) $(GFLAGS)
 
 
-all: ArrayListTest ArrayQueueTest ArrayStackTest LinkedListTest QueueTest
+all: ArrayListTest ArrayQueueTest ArrayStackTest LinkedListTest QueueTest StackTest
 
 
 # Executables
@@ -24,6 +24,9 @@ LinkedListTest: linked_list.o linked_list_test.o
 
 QueueTest: queue.o queue_test.o
 	$(CC) $(CFLAGS) bin/src/queue.o bin/tests/queue_test.o -o bin/QueueTest
+
+StackTest: stack.o stack_test.o
+	$(CC) $(CFLAGS) bin/src/stack.o bin/tests/stack_test.o -o bin/StackTest
 
 # Source
 
@@ -47,6 +50,10 @@ queue.o: src/queue/queue.c src/queue/queue.h
 	mkdir -p bin/src
 	$(CC) $(CFLAGS) -c src/queue/queue.c -o bin/src/queue.o
 
+stack.o: src/stack/stack.c src/stack/stack.h
+	mkdir -p bin/src
+	$(CC) $(CFLAGS) -c src/stack/stack.c -o bin/src/stack.o
+
 # Testing
 
 array_list_test.o: tests/array_list_test.c
@@ -68,6 +75,10 @@ linked_list_test.o: tests/linked_list_test.c
 queue_test.o: tests/queue_test.c
 	mkdir -p bin/tests
 	$(CC) $(CFLAGS) -c tests/queue_test.c -o bin/tests/queue_test.o
+
+stack_test.o: tests/stack_test.c
+	mkdir -p bin/tests
+	$(CC) $(CFLAGS) -c tests/stack_test.c -o bin/tests/stack_test.o
 
 # Clean
 

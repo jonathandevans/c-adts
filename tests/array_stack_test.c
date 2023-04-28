@@ -522,7 +522,9 @@ bool test_ArrayStack_clear_multiple() {
 
 bool test_ArrayStack_clear_from_null() {
   ArrayStack* stack = NULL;
-  ArrayStack_clear(stack);
+  if (ArrayStack_clear(stack)) {
+    return false;
+  }
 
   return true;
 }
@@ -533,7 +535,9 @@ bool test_ArrayStack_clear_from_empty() {
     return false;
   }
 
-  ArrayStack_clear(stack);
+  if (ArrayStack_clear(stack)) {
+    return false;
+  }
 
   if (stack->size != 0) {
     return false;
