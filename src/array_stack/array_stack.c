@@ -27,15 +27,8 @@ ArrayStack* new_ArrayStack() {
     return NULL;
   }
 
-  // Initialise the collection.
-  void** new_collection = malloc(sizeof(void*));
-  // If the memory allocation failed, return NULL.
-  if (new_collection == NULL) {
-    return NULL;
-  }
-
   // Initialise the stack.
-  stack->collection = new_collection;
+  stack->collection = NULL;
   stack->size = 0;
   return stack;
 }
@@ -55,31 +48,31 @@ bool ArrayStack_push(ArrayStack* stack, void* data) {
     return false;
   }
 
-  // If the collection is NULL, return false.
-  if (stack->collection == NULL) {
-    return false;
-  }
-
-  // If the stack is empty, add the data to the collection.
   if (stack->size == 0) {
-    stack->collection[0] = data;
+    void** new_collection = malloc(sizeof(void*));
+    // If the memory allocation failed, return false.
+    if (new_collection == NULL) {
+      return false;
+    }
+    new_collection[0] = data;
+    stack->collection = new_collection;
     stack->size++;
     return true;
   }
 
-  // Otherwise,
-  // Reallocate the collection to make space for the new element.
-  void** new_collection = realloc(stack->collection, sizeof(void*) * (stack->size + 1));
-  // If the memory allocation failed, return false.
-  if (new_collection == NULL) {
-    return false;
+  if (stack->size > 0) {
+    void** new_collection = realloc(stack->collection, sizeof(void*) * (stack->size + 1));
+    // If the memory allocation failed, return false.
+    if (new_collection == NULL) {
+      return false;
+    }
+    new_collection[stack->size] = data;
+    stack->collection = new_collection;
+    stack->size++;
+    return true;
   }
 
-  // Add the data to the collection.
-  new_collection[stack->size] = data;
-  stack->collection = new_collection;
-  stack->size++;
-  return true;
+  return false;
 }
 
 /**
@@ -109,17 +102,28 @@ void* ArrayStack_pop(ArrayStack* stack) {
   // Get the data from the top of the stack.
   void* data = stack->collection[stack->size - 1];
 
-  // Reallocate the collection to make space for the new element.
-  void** new_collection = realloc(stack->collection, sizeof(void*) * (stack->size - 1));
-  // If the memory allocation failed, return NULL.
-  if (new_collection == NULL) {
-    return NULL;
+  // If the stack only has one element, free the collection.
+  if (stack->size == 1) {
+    free(stack->collection);
+    stack->collection = NULL;
+    stack->size--;
+    return data;
   }
 
-  // Remove the data from the collection.
-  stack->collection = new_collection;
-  stack->size--;
-  return data;
+  if (stack->size > 0) {
+    void** new_collection = realloc(stack->collection, sizeof(void*) * (stack->size - 1));
+    // If the memory allocation failed, return NULL.
+    if (new_collection == NULL) {
+      return NULL;
+    }
+
+    // Remove the data from the collection.
+    stack->collection = new_collection;
+    stack->size--;
+    return data;
+  }
+
+  return NULL;
 }
 
 /**
@@ -160,7 +164,7 @@ void* ArrayStack_peek(ArrayStack* stack) {
 int ArrayStack_size(ArrayStack* stack) {
   // If the stack is NULL, return 0.
   if (stack == NULL) {
-    return 0;
+    return -1;
   }
 
   // Return the size of the stack.
