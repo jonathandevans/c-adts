@@ -108,6 +108,10 @@ void* Queue_dequeue(Queue* queue) {
   // Set the head to the next node.
   queue->head = next_node;
 
+  if (queue->size == 1) {
+    queue->tail = NULL;
+  }
+
   // Decrement the size of the queue.
   queue->size--;
   return data;
