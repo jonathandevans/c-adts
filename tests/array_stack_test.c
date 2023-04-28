@@ -125,8 +125,6 @@ bool test_ArrayStack_pop() {
   int data = 5;
   ArrayStack_push(stack, &data);
 
-  ArrayStack_printInt(stack);
-
   void* popped = ArrayStack_pop(stack);
   if (popped == NULL) {
     printf("popped is null");
