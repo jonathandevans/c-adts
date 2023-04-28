@@ -422,7 +422,7 @@ bool test_Queue_size_multiple() {
 bool test_Queue_size_from_null() {
   Queue* queue = NULL;
 
-  if (Queue_size(queue) != 0) {
+  if (Queue_size(queue) != -1) {
     return false;
   }
 
@@ -560,7 +560,7 @@ bool test_Queue_clear_multiple() {
 bool test_Queue_clear_from_null() {
   Queue* queue = NULL;
 
-  if (!Queue_clear(queue)) {
+  if (Queue_clear(queue)) {
     return false;
   }
 
