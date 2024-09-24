@@ -1,8 +1,8 @@
-# c-abstract-data-types
+# C Abstract Data Types
 
 This is a series of abstract data types implemented using the standard C library, along with some executable tests to demonstrate their functionality. These types are designed to make use of dynamic memory allocation to store either an array or a series of nodes, with the data stored being a void*. It's important to note that whilst the ADT will be dynamically allocated along with the pointers given, the thing the memory assignment of the value at the pointer is up to the programmer.
 
-Anyone is welcome to use these structures in any way they which, this was just something to get me used to C syntax again. In some ways these implementations are not complete, and chances are you'll have to edit them in some way for your specific use case, bu hey it's a start.
+Anyone is welcome to use these structures in any way they which, this was just something to get me used to C syntax again. In some ways these implementations are not complete, and chances are you'll have to edit them in some way for your specific use case, but hey it's a start.
 
 ## ADTS
 
